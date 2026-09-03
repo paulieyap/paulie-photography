@@ -36,7 +36,26 @@ python -m http.server 8000
 
 ## Deploying
 
-Deploys independently of GitHub — pushing to `main` does not redeploy the
-site. Either drag-and-drop this folder onto the site's deploy page in the
-Netlify dashboard, or run `netlify deploy --prod` from a linked project
-(`netlify login`, then `netlify link`, once).
+**Pushing to `main` does not redeploy the site.** GitHub here is just a code
+backup — it's disconnected from what's actually live. Deploys go out
+separately, straight from this local folder (photos included, even though
+they aren't in git).
+
+In practice, I deploy by asking Claude Code to redeploy after a change. It
+runs the Netlify CLI directly against this folder:
+
+```
+netlify deploy --dir . --prod
+```
+
+(the folder is already linked to the Netlify project via `netlify link`, done
+once). That uploads whatever's currently on disk — code and photos — as the
+new live version.
+
+**Production deploys are normally locked** in the Netlify dashboard (Site
+configuration → Build & deploy → Continuous deployment), on purpose — it's
+what stops GitHub's own auto-publish (continuous deployment from the repo)
+from firing and overwriting the live site with a photo-less build. Locked
+also means the CLI command above won't go live either; it comes back as a
+draft/preview URL instead. So to actually get a change live: unlock deploys,
+redeploy, then lock them again once it's confirmed live.
