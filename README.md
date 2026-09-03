@@ -1,8 +1,6 @@
-# Paulie Yap Photography
+# Portfolio Website via Netlify
 
-A photography portfolio site: hero, about, and a categorized gallery (film
-and digital) with horizontal-scroll rows, an expandable category view, and a
-click-to-open lightbox. Plain HTML/CSS/JS, no build step, no framework.
+A photography portfolio site built with the hellp of Claude (Design and Code) and Netlify
 
 **Live site:** https://paulie-photography.netlify.app
 
