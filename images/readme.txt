@@ -1,17 +1,14 @@
-Drop your photos into this folder with these exact filenames, then re-deploy:
+Drop your photos into this folder, then re-deploy.
 
-images/hero.jpg      - signature photo shown in the top hero (about 800x400px or larger)
-images/portrait.jpg  - a portrait of you, for the About section (portrait orientation, ~600x800px)
-images/work-1.jpg     through images/work-6.jpg - your six gallery photos (any consistent aspect ratio, ~800x600px works well)
+Two named files:
+  hero.jpg      - signature photo shown in the top hero
+  portrait.jpg  - a portrait of you, for the About section
 
-Then in index.html, find each gray dashed placeholder box (search for "ph") and swap it for a real <img> tag, e.g.:
+Everything else: export/download the "uploads" folder from the design project
+and copy its files straight in here, keeping their exact original filenames
+(including the random hash suffixes like "-9cc1eb2d"). The gallery in
+script.js references those exact filenames directly, so nothing needs
+renaming — just drop the files in and refresh.
 
-  <div class="ph grayscale" style="height: 400px;">
-    <span>Replace this box with &lt;img src="images/hero.jpg"&gt; ...</span>
-  </div>
-
-becomes:
-
-  <img src="images/hero.jpg" alt="Signature photo" style="width:100%;height:400px;object-fit:cover;" class="grayscale">
-
-(keep the grayscale class only on hero/portrait -- the gallery photos should stay in color)
+Any photo that isn't here yet shows a small dashed placeholder box naming
+the missing file instead of a broken image, so it's easy to see what's left.

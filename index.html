@@ -11,19 +11,83 @@
   a:hover { color: var(--color-accent); text-decoration: underline; }
   .wrap { max-width: 1280px; margin: 0 auto; padding: 0 var(--space-6); }
   .grid6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--space-6); }
+
+  /* — placeholder box shown when a referenced photo hasn't been dropped into images/ yet — */
   .ph {
-    background: var(--color-neutral-200); border: 1px dashed var(--color-neutral-700);
+    background: var(--color-neutral-200); border: 1px dashed var(--color-neutral-500);
     display: flex; align-items: center; justify-content: center; text-align: center;
-    color: var(--color-neutral-700); font-size: 13px; padding: var(--space-4);
+    color: var(--color-neutral-700); font-size: 12px; padding: var(--space-2);
+    width: 100%; height: 100%; min-height: 120px;
   }
-  .ph img { display: none; }
+
+  /* — hero — */
+  .hero-photo { height: 100%; min-height: 260px; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* — about — */
+  .portrait-photo { width: 100%; height: 320px; }
+  .portrait-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* — gallery — */
+  .gallery-group { margin-bottom: var(--space-9, 48px); }
+  .group-title {
+    font-size: 28px; margin: 0 0 48px; color: var(--color-accent);
+    border-bottom: 2px solid var(--color-text); padding-bottom: var(--space-3);
+  }
+  .cat-block { margin-bottom: var(--space-8); }
+  .cat-header {
+    display: flex; align-items: baseline; gap: var(--space-3); margin-bottom: var(--space-4);
+    border-bottom: 2px solid var(--color-divider); padding-bottom: var(--space-2); cursor: pointer;
+  }
+  .cat-name { font-size: 18px; margin: 0; }
+  .cat-count { font-size: 13px; color: var(--color-neutral-700); }
+  .cat-row { position: relative; }
+  .hscroll {
+    display: flex; overflow-x: auto; gap: var(--space-4); padding-bottom: var(--space-2);
+    scroll-behavior: smooth; scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+  .hscroll::-webkit-scrollbar { display: none; }
+  .hscroll .photo { flex: 0 0 220px; height: 220px; }
+  .hscroll-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+    background: var(--color-bg); box-shadow: var(--shadow-md);
+  }
+  .hscroll-arrow-left { left: 4px; }
+  .hscroll-arrow-right { right: 4px; }
+  .photo { cursor: pointer; transition: opacity 0.15s ease; overflow: hidden; }
+  .photo:hover { opacity: 0.85; }
+  .photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  /* — category (expanded) view — */
+  .category-overlay {
+    position: fixed; inset: 0; background: var(--color-bg); z-index: 40; overflow-y: auto;
+  }
+  .category-overlay .nav { justify-content: flex-start; gap: var(--space-4); }
+  .category-overlay .back-link { cursor: pointer; font-size: 15px; }
+  #category-grid.grid6 { row-gap: var(--space-6); }
+  #category-grid .photo { grid-column: span 2; height: 260px; }
+
+  /* — lightbox — */
+  .lightbox {
+    position: fixed; inset: 0; background: rgba(32, 30, 29, 0.92); z-index: 60;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .lightbox-close, .lightbox-prev, .lightbox-next {
+    position: absolute; background: none; border: none; color: white; cursor: pointer;
+  }
+  .lightbox-close { top: var(--space-5); right: var(--space-5); font-size: 28px; }
+  .lightbox-prev { left: var(--space-5); font-size: 36px; }
+  .lightbox-next { right: var(--space-5); font-size: 36px; }
+  .lightbox-stage { width: 82vw; height: 82vh; display: flex; align-items: center; justify-content: center; }
+  .lightbox-stage img { max-width: 100%; max-height: 100%; object-fit: contain; }
 </style>
 </head>
 <body>
 
 <header class="nav" style="border-bottom: 2px solid var(--color-divider);">
   <div class="wrap" style="display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-4) var(--space-6); align-items: center;">
-    <div class="nav-brand" style="font-family: var(--font-heading); font-size: 20px; letter-spacing: 0.02em; text-align: center; width: 166px; height: 30px;">PAULIE YAP</div>
+    <div class="nav-brand" style="font-size: 20px; letter-spacing: 0.02em; text-align: center;">PAULIE YAP</div>
     <nav style="display: flex; gap: var(--space-6); font-size: 15px; justify-content: center;">
       <a href="#about">About</a>
       <a href="#work">Work</a>
@@ -35,15 +99,15 @@
 <section style="border-bottom: 2px solid var(--color-divider);">
   <div class="wrap grid6" style="padding: var(--space-8) var(--space-6); align-items: stretch;">
     <div style="grid-column: 1 / 4; display: flex; flex-direction: column; justify-content: center; gap: var(--space-4);">
-      <h1 style="font-family: var(--font-heading); font-size: 64px; line-height: 1.02; margin: 0; text-align: left;">PHOTOGRAPHY</h1>
-      <p style="font-size: 18px; line-height: 1.5; max-width: 32ch; margin: 0;">Amateur photographer based in Cologne, Germany, shooting both analog and digital.</p>
+      <h1 style="font-size: clamp(32px, 6vw, 64px); line-height: 1.02; margin: 0; text-align: left;">PHOTOGRAPHY PORTFOLIO</h1>
+      <p style="font-size: 18px; line-height: 1.5; max-width: 32ch; margin: 0;">Amateur photographer based in Germany shooting both analog and digital.</p>
       <div style="margin-top: var(--space-2);">
-        <a class="btn btn-primary" href="#work" style="display: inline-flex;">View the work</a>
+        <a class="btn btn-primary" href="#work" style="display: inline-flex;">My work</a>
       </div>
     </div>
     <div style="grid-column: 4 / 7;">
-      <div class="ph grayscale" style="height: 400px;">
-        <span>Replace this box with &lt;img src="images/hero.jpg"&gt; — your signature photo</span>
+      <div class="hero-photo">
+        <img src="images/hero.jpg" alt="Signature photograph" data-placeholder-label="Drop a signature photo at images/hero.jpg">
       </div>
     </div>
   </div>
@@ -52,13 +116,17 @@
 <section id="about" style="border-bottom: 2px solid var(--color-divider);">
   <div class="wrap grid6" style="padding: var(--space-8) var(--space-6);">
     <div style="grid-column: 1 / 3;">
-      <div class="ph grayscale" style="width: 100%; height: 320px;">
-        <span>images/portrait.jpg — your portrait</span>
+      <div class="portrait-photo">
+        <img src="images/portrait.jpg" alt="Portrait of Paulie Yap" data-placeholder-label="Drop a portrait at images/portrait.jpg">
       </div>
     </div>
     <div style="grid-column: 3 / 7; display: flex; flex-direction: column; gap: var(--space-3); justify-content: center;">
       <div class="tag tag-accent" style="width: fit-content;">ABOUT</div>
-      <p style="font-size: 20px; line-height: 1.6; margin: 0; max-width: 60ch;">[Your bio goes here — background, how you got into photography, your approach, and what clients or subjects can expect working with you.]</p>
+      <div style="font-size: 20px; line-height: 1.6; margin: 0; max-width: 60ch;">
+        <p>[ I'm a photographer based in Cologne, working mostly on 35mm film. My work moves across landscapes, everyday moments and portraits.</p>
+        <p>I'm currently in a phase of figuring out my own voice, moving away from just shooting everywhere and toward more intentional, editorial and still life work, along with portraits that lean more artsy.<br><br>I'm continuing to explore where my photography wants to go next, including a longtime dream of shooting concerts and possibly working in medium format.</p>
+        <p>If you're looking to work with me, feel free to drop a message below. ]</p>
+      </div>
     </div>
   </div>
 </section>
@@ -66,61 +134,18 @@
 <section id="work" style="border-bottom: 2px solid var(--color-divider);">
   <div class="wrap" style="padding: var(--space-8) var(--space-6);">
     <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: var(--space-6);">
-      <h2 style="font-family: var(--font-heading); font-size: 32px; margin: 0;">WORK</h2>
+      <h2 style="font-size: 32px; margin: 0;">GALLERY</h2>
       <span style="font-size: 14px; color: var(--color-neutral-700);">Selected projects</span>
     </div>
-    <div class="grid6" style="row-gap: var(--space-8);">
-      <div style="grid-column: span 2; display: flex; flex-direction: column; gap: var(--space-2);">
-        <div class="ph" style="width: 100%; height: 260px;"><span>images/work-1.jpg</span></div>
-        <div style="display: flex; justify-content: space-between; border-top: 2px solid var(--color-divider); padding-top: var(--space-2);">
-          <span style="font-family: var(--font-heading); font-size: 16px;">Untitled I</span>
-          <span style="font-size: 14px; color: var(--color-neutral-700);">Portrait</span>
-        </div>
-      </div>
-      <div style="grid-column: span 2; display: flex; flex-direction: column; gap: var(--space-2);">
-        <div class="ph" style="width: 100%; height: 260px;"><span>images/work-2.jpg</span></div>
-        <div style="display: flex; justify-content: space-between; border-top: 2px solid var(--color-divider); padding-top: var(--space-2);">
-          <span style="font-family: var(--font-heading); font-size: 16px;">Untitled II</span>
-          <span style="font-size: 14px; color: var(--color-neutral-700);">Landscape</span>
-        </div>
-      </div>
-      <div style="grid-column: span 2; display: flex; flex-direction: column; gap: var(--space-2);">
-        <div class="ph" style="width: 100%; height: 260px;"><span>images/work-3.jpg</span></div>
-        <div style="display: flex; justify-content: space-between; border-top: 2px solid var(--color-divider); padding-top: var(--space-2);">
-          <span style="font-family: var(--font-heading); font-size: 16px;">Untitled III</span>
-          <span style="font-size: 14px; color: var(--color-neutral-700);">Editorial</span>
-        </div>
-      </div>
-      <div style="grid-column: span 2; display: flex; flex-direction: column; gap: var(--space-2);">
-        <div class="ph" style="width: 100%; height: 260px;"><span>images/work-4.jpg</span></div>
-        <div style="display: flex; justify-content: space-between; border-top: 2px solid var(--color-divider); padding-top: var(--space-2);">
-          <span style="font-family: var(--font-heading); font-size: 16px;">Untitled IV</span>
-          <span style="font-size: 14px; color: var(--color-neutral-700);">Portrait</span>
-        </div>
-      </div>
-      <div style="grid-column: span 2; display: flex; flex-direction: column; gap: var(--space-2);">
-        <div class="ph" style="width: 100%; height: 260px;"><span>images/work-5.jpg</span></div>
-        <div style="display: flex; justify-content: space-between; border-top: 2px solid var(--color-divider); padding-top: var(--space-2);">
-          <span style="font-family: var(--font-heading); font-size: 16px;">Untitled V</span>
-          <span style="font-size: 14px; color: var(--color-neutral-700);">Street</span>
-        </div>
-      </div>
-      <div style="grid-column: span 2; display: flex; flex-direction: column; gap: var(--space-2);">
-        <div class="ph" style="width: 100%; height: 260px;"><span>images/work-6.jpg</span></div>
-        <div style="display: flex; justify-content: space-between; border-top: 2px solid var(--color-divider); padding-top: var(--space-2);">
-          <span style="font-family: var(--font-heading); font-size: 16px;">Untitled VI</span>
-          <span style="font-size: 14px; color: var(--color-neutral-700);">Editorial</span>
-        </div>
-      </div>
-    </div>
+    <div id="gallery-home"></div>
   </div>
 </section>
 
 <section id="contact" style="border-bottom: 2px solid var(--color-divider);">
   <div class="wrap grid6" style="padding: var(--space-8) var(--space-6);">
     <div style="grid-column: 1 / 3; display: flex; flex-direction: column; gap: var(--space-3); justify-content: flex-start;">
-      <h2 style="font-family: var(--font-heading); font-size: 32px; margin: 0;">CONTACT</h2>
-      <p style="font-size: 16px; line-height: 1.5; margin: 0;">[Availability note — booking sessions, response time, service area, etc.]</p>
+      <h2 style="font-size: 32px; margin: 0;">CONTACT</h2>
+      <p style="font-size: 16px; line-height: 1.5; margin: 0;">[ This is primarily a portfolio, but I'm open to collaborations. If something here resonates with you, feel free to reach out. ]</p>
     </div>
     <form name="contact" method="POST" data-netlify="true" style="grid-column: 3 / 7; display: flex; flex-direction: column; gap: var(--space-4);">
       <input type="hidden" name="form-name" value="contact">
@@ -134,7 +159,7 @@
       </div>
       <div class="field">
         <label for="message">Message</label>
-        <input class="input" id="message" name="message" type="text" placeholder="Tell me about your project">
+        <input class="input" id="message" name="message" type="text" placeholder="Your message here">
       </div>
       <button type="submit" class="btn btn-primary" style="width: fit-content;">Send message</button>
     </form>
@@ -143,14 +168,37 @@
 
 <footer>
   <div class="wrap" style="padding: var(--space-6); display: flex; align-items: center; justify-content: space-between; font-size: 14px;">
-    <span>&copy; 2026 Paulie Yap Photography</span>
+    <span>© 2026 Paulie Photography</span>
     <div style="display: flex; gap: var(--space-5);">
-      <a href="#">Instagram</a>
+      <a href="https://www.instagram.com/pauliemeatsix/#" target="_blank" rel="noopener noreferrer">Instagram</a>
       <a href="#">Email</a>
-      <a href="#">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/paulie-yap-183289186/">LinkedIn</a>
     </div>
   </div>
 </footer>
 
+<div id="category-view" class="category-overlay" hidden>
+  <header class="nav" style="border-bottom: 2px solid var(--color-divider);">
+    <div class="wrap" style="display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4) var(--space-6);">
+      <a id="category-back" class="back-link">← Back</a>
+      <h2 id="category-title" style="font-size: 20px; margin: 0;"></h2>
+      <span id="category-count" style="font-size: 13px; color: var(--color-neutral-700);"></span>
+    </div>
+  </header>
+  <div class="wrap" style="padding: var(--space-8) var(--space-6);">
+    <div id="category-grid" class="grid6"></div>
+  </div>
+</div>
+
+<div id="lightbox" class="lightbox" hidden>
+  <button id="lightbox-close" class="lightbox-close" type="button" aria-label="Close">×</button>
+  <button id="lightbox-prev" class="lightbox-prev" type="button" aria-label="Previous">‹</button>
+  <div class="lightbox-stage">
+    <img id="lightbox-img" src="" alt="">
+  </div>
+  <button id="lightbox-next" class="lightbox-next" type="button" aria-label="Next">›</button>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
