@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paulie Yap Photography</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  body { margin: 0; background: var(--color-bg); font-family: var(--font-body); color: var(--color-text); }
+  a { color: var(--color-accent-700); text-decoration: none; }
+  a:hover { color: var(--color-accent); text-decoration: underline; }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 var(--space-6); }
+  .grid6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: var(--space-6); }
+  .ph {
+    background: var(--color-neutral-200); border: 1px dashed var(--color-neutral-700);
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    color: var(--color-neutral-700); font-size: 13px; padding: var(--space-4);
+  }
+  .ph img { display: none; }
+</style>
+</head>
+<body>
+
+<header class="nav" style="border-bottom: 2px solid var(--color-divider);">
+  <div class="wrap" style="display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-4) var(--space-6); align-items: center;">
+    <div class="nav-brand" style="font-family: var(--font-heading); font-size: 20px; letter-spacing: 0.02em; text-align: center; width: 166px; height: 30px;">PAULIE YAP</div>
+    <nav style="display: flex; gap: var(--space-6); font-size: 15px; justify-content: center;">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section style="border-bottom: 2px solid var(--color-divider);">
+  <div class="wrap grid6" style="padding: var(--space-8) var(--space-6); align-items: stretch;">
+    <div style="grid-column: 1 / 4; display: flex; flex-direction: column; justify-content: center; gap: var(--space-4);">
+      <h1 style="font-family: var(--font-heading); font-size: 64px; line-height: 1.02; margin: 0; text-align: left;">PHOTOGRAPHY</h1>
+      <p style="font-size: 18px; line-height: 1.5; max-width: 32ch; margin: 0;">Amateur photographer based in Cologne, Germany, shooting both analog and digital.</p>
+      <div style="margin-top: var(--space-2);">
+        <a class="btn btn-primary" href="#work" style="display: inline-flex;">View the work</a>
+      </div>
+    </div>
+    <div style="grid-column: 4 / 7;">
+      <div class="ph grayscale" style="height: 400px;">
+        <span>Replace this box with &lt;img src="images/hero.jpg"&gt; — your signature photo</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" style="border-bottom: 2px solid var(--color-divider);">
+  <div class="wrap grid6" style="padding: var(--space-8) var(--space-6);">
+    <div style="grid-column: 1 / 3;">
+      <div class="ph grayscale" style="width: 100%; height: 320px;">
+        <span>images/portrait.jpg — your portrait</span>
+      </div>
+    </div>
+    <div style="grid-column: 3 / 7; display: flex; flex-direction: column; gap: var(--space-3); justify-content: center;">
+      <div class="tag tag-accent" style="width: fit-content;">ABOUT</div>
+      <p style="font-size: 20px; line-height: 1.6; margin: 0; max-width: 60ch;">[Your bio goes here — background, how you got into photography, your approach, and what clients or subjects can expect working with you.]</p>
+    </div>
+  </div>
+</section>
+
+<section id="work" style="border-bottom: 2px solid var(--color-divider);">
+  <div class="wrap" style="padding: var(--space-8) var(--space-6);">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: var(--space-6);">
+      <h2 style="font-family: var(--font-heading); font-size: 32px; margin: 0;">WORK</h2>
+      <span style="font-size: 14px; color: var(--color-neutral-700);">Selected projects</span>
+    </div>
+    <div class="grid6" style="row-gap: var(--space-8);">
+      <div style="grid-column: span 2; display: flex; flex-direction: column; gap: var(--space-2);">
+        <div class="ph" style="width: 100%; height: 260px;"><span>images/work-1.jpg</span></div>
+        <div style="display: flex; justify-content: space-between; border-top: 2px solid var(--color-divider); padding-top: var(--space-2);">
+          <span style="font-family: var(--font-heading); font-size: 16px;">Untitled I</span>
+          <span style="font-size: 14px; color: var(--color-neutral-700);">Portrait</span>
+        </div>
+      </div>
+      <div style="grid-column: span 2; display: flex; flex-direction: column; gap: var(--space-2);">
+        <div class="ph" style="width: 100%; height: 260px;"><span>images/work-2.jpg</span></div>
+        <div style="display: flex; justify-content: space-between; border-top: 2px solid var(--color-divider); padding-top: var(--space-2);">
+          <span style="font-family: var(--font-heading); font-size: 16px;">Untitled II</span>
+          <span style="font-size: 14px; color: var(--color-neutral-700);">Landscape</span>
+        </div>
+      </div>
+      <div style="grid-column: span 2; display: flex; flex-direction: column; gap: var(--space-2);">
+        <div class="ph" style="width: 100%; height: 260px;"><span>images/work-3.jpg</span></div>
+        <div style="display: flex; justify-content: space-between; border-top: 2px solid var(--color-divider); padding-top: var(--space-2);">
+          <span style="font-family: var(--font-heading); font-size: 16px;">Untitled III</span>
+          <span style="font-size: 14px; color: var(--color-neutral-700);">Editorial</span>
+        </div>
+      </div>
+      <div style="grid-column: span 2; display: flex; flex-direction: column; gap: var(--space-2);">
+        <div class="ph" style="width: 100%; height: 260px;"><span>images/work-4.jpg</span></div>
+        <div style="display: flex; justify-content: space-between; border-top: 2px solid var(--color-divider); padding-top: var(--space-2);">
+          <span style="font-family: var(--font-heading); font-size: 16px;">Untitled IV</span>
+          <span style="font-size: 14px; color: var(--color-neutral-700);">Portrait</span>
+        </div>
+      </div>
+      <div style="grid-column: span 2; display: flex; flex-direction: column; gap: var(--space-2);">
+        <div class="ph" style="width: 100%; height: 260px;"><span>images/work-5.jpg</span></div>
+        <div style="display: flex; justify-content: space-between; border-top: 2px solid var(--color-divider); padding-top: var(--space-2);">
+          <span style="font-family: var(--font-heading); font-size: 16px;">Untitled V</span>
+          <span style="font-size: 14px; color: var(--color-neutral-700);">Street</span>
+        </div>
+      </div>
+      <div style="grid-column: span 2; display: flex; flex-direction: column; gap: var(--space-2);">
+        <div class="ph" style="width: 100%; height: 260px;"><span>images/work-6.jpg</span></div>
+        <div style="display: flex; justify-content: space-between; border-top: 2px solid var(--color-divider); padding-top: var(--space-2);">
+          <span style="font-family: var(--font-heading); font-size: 16px;">Untitled VI</span>
+          <span style="font-size: 14px; color: var(--color-neutral-700);">Editorial</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="border-bottom: 2px solid var(--color-divider);">
+  <div class="wrap grid6" style="padding: var(--space-8) var(--space-6);">
+    <div style="grid-column: 1 / 3; display: flex; flex-direction: column; gap: var(--space-3); justify-content: flex-start;">
+      <h2 style="font-family: var(--font-heading); font-size: 32px; margin: 0;">CONTACT</h2>
+      <p style="font-size: 16px; line-height: 1.5; margin: 0;">[Availability note — booking sessions, response time, service area, etc.]</p>
+    </div>
+    <form name="contact" method="POST" data-netlify="true" style="grid-column: 3 / 7; display: flex; flex-direction: column; gap: var(--space-4);">
+      <input type="hidden" name="form-name" value="contact">
+      <div class="field">
+        <label for="name">Name</label>
+        <input class="input" id="name" name="name" type="text" placeholder="Your name">
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input class="input" id="email" name="email" type="email" placeholder="you@example.com">
+      </div>
+      <div class="field">
+        <label for="message">Message</label>
+        <input class="input" id="message" name="message" type="text" placeholder="Tell me about your project">
+      </div>
+      <button type="submit" class="btn btn-primary" style="width: fit-content;">Send message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="padding: var(--space-6); display: flex; align-items: center; justify-content: space-between; font-size: 14px;">
+    <span>&copy; 2026 Paulie Yap Photography</span>
+    <div style="display: flex; gap: var(--space-5);">
+      <a href="#">Instagram</a>
+      <a href="#">Email</a>
+      <a href="#">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
