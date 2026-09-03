@@ -1,3 +1,6 @@
 images/*
 !images/readme.txt
 uploads/
+
+# Local Netlify folder
+.netlify
